@@ -1,0 +1,47 @@
+<!-- <form action="">
+    <input type="text" placeholder="Username">
+    <input type="email" placeholder="Email id">
+    <input type="text" placeholder="password">
+    <input type="submit" value="submit">
+</form> -->
+<div class="container bg-white mt-5 py-5 px-5 rounded w-50">
+<form action="/signup" method="post" >
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+    <div class="mb-4">
+        <h1>Sign up</h1>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-3">
+                <label for="email"  class="form-label">Email id</label>
+                <input type="email" class="form-control" name="user[email_id]" id="email" aria-describedby="emailHelp">
+                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+              </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control"  name="user[username]" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password"  name="user[password_digest]"  class="form-control" id="password">
+              </div>
+        </div>
+    </div>
+    <div class="d-grid justify-content-end mt-3">
+        <button type="submit" class="btn btn-lg btn-primary me-auto">Submit</button>
+    </div>
+
+
+
+    <!-- <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div> -->
+
+  </form>
+</div>
+
