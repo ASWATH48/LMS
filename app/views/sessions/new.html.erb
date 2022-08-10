@@ -1,0 +1,30 @@
+<div class="container bg-white mt-5 py-5 px-5 rounded w-50">
+<form action="sessions/signin" method="post" >
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+    <div class="mb-4">
+        <h1>Sign in</h1>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-3">
+                <label for="email"  class="form-label">Email id</label>
+                <input type="email" class="form-control" name="email_id" id="email" aria-describedby="emailHelp">
+              </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password"  name="password"  class="form-control" id="password">
+              </div>
+        </div>
+        <% if flash[:error]%>
+        <p class="text-danger">
+            <%= flash[:error] %>
+        </p>
+        <% end%>
+    <div class="d-grid justify-content-end mt-3">
+        <button type="submit" class="btn btn-lg btn-primary me-auto">Submit</button>
+    </div>
+     
+  </form>
+</div>

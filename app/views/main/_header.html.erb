@@ -1,0 +1,48 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light shadow-sm  bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand col-8" href="/"><%= image_tag  "lms.png", height: 60 , width: 110 , class: "d-inline-block align-top"%></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/index">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/course">Course</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Interview qns</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/news">News</a>
+        </li>
+        <% if session[:current_user] == nil %>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Login/Register
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="signin">Login</a></li>
+            <li><a class="dropdown-item" href="signup">Register</a></li>
+          </ul>
+        </li>
+        <%else%>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-user fa-2x" aria-hidden="true"></i>      
+              </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <% logged_user = User.find(session[:current_user]) %>
+            <p class="dropdown-item ">Signed in as</p>
+            <p class="dropdown-item lead px-3"><i class="fa fa-user mx-2" aria-hidden="true"></i><%= logged_user["username"].capitalize()%></p>
+            <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out mx-2" aria-hidden="true"></i>Log out</a>
+          </ul>
+        </li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</nav>

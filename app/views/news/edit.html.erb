@@ -1,0 +1,33 @@
+<div class="container py-5 h-100">
+   <div class="row justify-content-center h-100">
+     <div class="col-12 col-lg-9 col-xl-7">
+       <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+         <div class="card-body p-4 p-md-5">
+           <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 font-color-grey">Edit Blog</h3>
+           <form action="/blogs" method="post">
+             <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"> 
+          
+             <div class="row">
+               <div class="col-md-12 mb-4">
+                 <input type="text" id="firstName" placeholder="blog heading" name="blog[blog_title]" value="<%=@blog.blog_title%>" class="form-control form-control-lg"/>
+               </div>
+               <div class="col-md-12 mb-4">
+                 <textarea name="blog[blog_description]"  class="form-control" cols="70" rows="10" style="resize: none;"><%=@blog.blog_description%></textarea>
+               </div>
+           </div>
+           <div class="float-end">
+            <input class="btn btn-primary btn-lg" type="submit" value="Submit"/>
+          </div>
+
+             </div>
+ 
+    
+
+ 
+
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

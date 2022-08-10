@@ -27,10 +27,17 @@
         <div class="col-12">
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password"  name="user[password_digest]"  class="form-control" id="password">
+                <input type="password"  name="user[password]"  class="form-control" id="password">
               </div>
         </div>
     </div>
+            <div class="col-12">
+            <div class="mb-3">
+            <% if flash[:error_in_user_details] %>
+            <p class="text-danger"> <%= flash[:error_in_user_details] %> </p>
+            <% end %>
+            </div>
+            </div>
     <div class="d-grid justify-content-end mt-3">
         <button type="submit" class="btn btn-lg btn-primary me-auto">Submit</button>
     </div>

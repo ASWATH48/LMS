@@ -17,9 +17,19 @@
    font-family: 'Inter', sans-serif;
  }
 body{
-   background: #f5f4f8;
+   background: #f9f8fc;
+   /* background-color: #FFFAFA; */
 }
 
+.orange{
+  background: #f48f3b; 
+}
+.blue{
+   background: #489acc;
+}
+.yellow{
+   background: #efd245;
+}
 
 .color-1{
    background-color: #fff;
