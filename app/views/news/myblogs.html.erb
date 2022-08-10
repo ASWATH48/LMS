@@ -5,7 +5,7 @@
 
     </div>
 </div>
-<% if Blog.where(user_id: session[:current_user]) == nil %>
+<% if session[:current_user]%>
 <% Blog.where(user_id: session[:current_user]).map do |cur_post| %>
     <div class="container my-2">
     <div class="row bg-white py-2">
@@ -36,11 +36,10 @@
     </div>
 </div>
 <% end %>
-  <% else %>
+<% else %>
     <div class="container">
         <p class="display-4">No posts yet please login to add blogs</p>
         <button class="btn-lg btn-primary float-end mt-5">Login</button>
-            <button></button>
     </div>
 <% end %>
 
