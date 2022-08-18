@@ -1,0 +1,98 @@
+
+<div class="container mt-2">
+  <div class="row">
+            <div class="col-lg-4 me-2 border px-4 py-2">
+                    <% no = 0 %>
+                    <% @ans.all.map do |ans| %>
+                    <div class="row border bg-white py-2 mt-2 ">
+
+                        <div class="col-md-7 col-5 ">
+                            <a href="/quiz/qno/<%= ans.id %>" class="text-reset text-decoration-none ">  
+                                <p class="mt-1">Question <%= no+=1 %></p> </a>
+                        </div>  
+
+                        <div class="col-md-2 col-3">
+                            <a href="/quiz/qno/<%= ans.id %>" class=" btn btn-pri">  
+                                Edit
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="/quiz/qno/delete/<%= ans.id %>" class=" btn btn-pri">  
+                                Del
+                            </a>
+                        </div>
+                    </div>
+                    <% end %>
+            </div>
+    
+            <div class="col ">
+                    <!-- 1 row  -->
+                    <div class="row">
+                        <form action="/question/create" method="post">
+                            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                            <div class="row">
+                                <input type="hidden" name="quest[assesments_id]" value="<%= @ids %>" >
+                                <input type="hidden" name="quest[user_id]" value="<%= session[:current_user] %>" >
+                        
+                                <textarea name="quest[question]" placeholder="Questions"  cols="30" rows="10" style="resize: none;" class="form-control" required></textarea>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6 col-12 mb-2">
+                                    <input type="text" name="quest[answer]"  class="form-control" placeholder="answer" required>
+                                </div>
+                                <div class="col-md-6 col-12 mb-2">
+                                    <input type="text" name="quest[choice1]"  class="form-control" placeholder="choice" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-12 mb-2">
+                                    <input type="text" name="quest[choice2]"   class="form-control" placeholder="choice (optional)">
+                                </div>        
+                                <div class="col-md-6 col-12 mb-2">
+                                    <input type="text"  name="quest[choice3]"  class="form-control" placeholder="choice (optional)">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="float-end mt-3 btn btn-pri" type="submit">Add qns</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- 1 row end -->
+                    <!-- 2 row -->
+                    <div class="row mt-4 bg-white rounded p-3">
+                    <%if @q_id.present? %> 
+                            <div class="row bg-white">
+                                <% @findqn = Quest.find(@q_id) %>
+                                    <div class="col-12 ">
+                                        <p class="fs-5 fw-bold"><%= @findqn.question %> ?</p>
+                                    </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6  col-12  mb-2 px-1 ">
+                                    <p class="index-bg text-white pt-1 ps-2 rounded  pb-4"><%= @findqn.answer %></p>
+                                </div>           
+                                <div class="col-md-6 col-12 mb-2 px-1 ">
+                                    <p class="index-bg text-white pt-1 ps-2 rounded pb-4"><%= @findqn.choice1 %></p>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <% unless  @findqn.choice2.length == 0 && @findqn.choice3.length == 0 %>
+                                <div class="col-md-6 col-12  mb-2 px-1">
+                                    <p class="index-bg text-white pt-1 ps-2 rounded pb-4"><%= @findqn.choice2 %></p>
+                                </div>
+                                <div class="col-md-6 col-12  mb-2 px-1">
+                                    <p class="index-bg text-white pt-1 ps-2 rounded pb-4"><%= @findqn.choice3 %></p>
+                                </div>
+                            <% end %>
+                            </div>
+                    </div>
+                            <% end %>                                <!-- @q_id.present? -->
+
+                    <!-- 2 nd row end -->
+            </div>
+    </div>
+</div>
+
+

@@ -4,12 +4,27 @@ class NewsController < ApplicationController
   @@route_id = []
   def technews; end
 
-  def addpost
-    @blog = Blog.new(params.require(:blog).permit(:user_id, :blog_title, :blog_description))
-    redirect_to root_path if @blog.save
+  def myblogs
+    @user_check = Blog.where(user_id: session[:current_user])
+    p @user_check
   end
 
-  def delete
+  def likedblogs
+    @liked_blog = Like.where(user_id: session[:current_user])
+    @like
+    
+  end
+
+  def addpost
+    if session[:current_user] == nil
+       redirect_to "/signin"
+    else
+    @blog = Blog.new(params.require(:blog).permit(:user_id, :blog_title, :blog_description))
+    redirect_to root_path if @blog.save
+    end
+  end
+
+  def delete_blog
     del = Blog.find(params[:id])
     redirect_to root_path if del.destroy
   end
@@ -37,9 +52,23 @@ class NewsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def delete
+    blog_id = params[:id]
+    check_id = Like.find_by(user_id: get_user_id, blog_id: blog_id)
+    p blog_id
+    p get_user_id
+    check_id.inspect
+    if check_id
+    check_id.destroy
+    end
+    redirect_back(fallback_location: root_path)    
+  end
+
   def get_user_id
     session[:current_user]
   end
+  
+  
 
   #  p "_____________"
   #  p session[:current_user]

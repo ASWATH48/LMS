@@ -21,6 +21,13 @@ body{
    /* background-color: #FFFAFA; */
 }
 
+.mt-7{
+   margin-top: 6%;
+}
+.pri-col{
+   background-color: #754ffe;
+}
+
 .orange{
   background: #f48f3b; 
 }
@@ -46,14 +53,32 @@ body{
    background-color: #754ffe;
 }
 
-.bg{
-   background-color: aqua;
-}
 
 .text-cutting{
    display: -webkit-box;
    -webkit-line-clamp: 3;
    -webkit-box-orient: vertical;  
    overflow: hidden;
- 
+}
+.btn-pri{
+   background-color: #754ffe !important;
+   color: #fff !important;
+}
+.btn-outline-pri{
+   border-color: #754ffe;
+   color: #754ffe !important;
+   outline: none;
+}
+
+.btn-outline-pri:hover{
+   background-color: #754ffe;
+   color: #fff !important;
+}
+
+#addblog_div{
+   display: none;
+}
+
+.hide{
+   display: none;
 }
