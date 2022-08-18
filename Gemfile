@@ -56,3 +56,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'mysql2', '~> 0.5.4'
 
 gem 'rubocop', require: false
+
+gem 'dotenv-rails'

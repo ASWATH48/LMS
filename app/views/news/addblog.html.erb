@@ -1,0 +1,53 @@
+<% logged_user = User.find(session[:current_user]) %>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col col-md-3 me-2 col-12 border  py-5 bg-white rounded ">
+        <div class="row d-flex justify-content-center">
+          <%= image_tag "profile_clipart.png", class: "img-fluid w-75"%>
+          <p class="text-center fs-1 mt-2"><%= logged_user["username"].capitalize()%>  </p>
+        </div>
+        <hr class="text-black" style="padding-top: 2px;">
+        <div class="row text-center px-5">
+            <a href="/allblogs" class="text-reset text-decoration-none btn btn-outline-pri my-2">All Blogs</a>
+             <a href="/blog/myblogs" class="text-reset text-decoration-none btn btn-outline-pri my-2">My Blogs</a>
+             <a href="/blog/addblog" class="text-reset text-decoration-none btn btn-pri my-2">Add Blog</a>
+             <a href="/blog/likedblogs" class="text-reset text-decoration-none btn btn-outline-pri my-2">Liked Blogs</a>
+        </div>
+    </div>
+    <!--  -->
+    <div class="col">
+     <!--  -->
+     <div class="container py-5 h-100">
+      <div class="row justify-content-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <h1 class="mb-4 pb-2 pb-md-0 mb-md-5 font-color-grey">Add Blog</h1>
+              <form action="/blog/create" method="post">
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"> 
+                <input name="blog[user_id]" type="hidden" value= "<%= session[:current_user] %>" >
+                <div class="row">
+                  <div class="col-md-12 mb-4">
+                    <input type="text" id="firstName" placeholder="blog heading" name="blog[blog_title]" class="form-control form-control-lg"/>
+                  </div>
+                  <div class="col-md-12 mb-4">
+                    <textarea name="blog[blog_description]" placeholder="blog content" class="form-control" cols="70" rows="10" style="resize: none;"></textarea>
+                  </div>
+              </div>
+              <div class="float-end">
+               <input class="btn btn-primary btn-lg" type="submit" value="Submit"/>
+             </div>
+    
+            </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+    </div>
+  </div>

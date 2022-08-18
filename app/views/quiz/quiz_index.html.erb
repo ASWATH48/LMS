@@ -1,0 +1,10 @@
+<div class="container mt-5">
+    <div class="row">
+        <% Assesment.all.map do |quiz|%>
+        <div class="col-2 rounded bg-white py-3  px-4">
+          <p class="fs-4 mb-4 "><%= quiz.title%></p>
+          <a href="/quiz/question/<%= quiz.id %>" class="btn btn-pri float-end ">Start</a>
+        </div>
+        <% end %>
+    </div>
+</div>

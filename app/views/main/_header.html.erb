@@ -13,10 +13,10 @@
           <a class="nav-link" href="/course">Course</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Interview qns</a>
+          <a class="nav-link" href="/quiz">Quiz</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/news">News</a>
+          <a class="nav-link" aria-current="page" href="/allblogs">Blogs</a>
         </li>
         <% if session[:current_user] == nil %>
           <li class="nav-item dropdown">
@@ -24,8 +24,8 @@
             Login/Register
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="signin">Login</a></li>
-            <li><a class="dropdown-item" href="signup">Register</a></li>
+            <li><a class="dropdown-item" href="/signin">Login</a></li>
+            <li><a class="dropdown-item" href="/signup">Register</a></li>
           </ul>
         </li>
         <%else%>
