@@ -7,6 +7,15 @@ class QuizController < ApplicationController
     def quiz_index
 
     end
+    def is_admin
+      @admin_log = User.find(session[:current_user])
+       if @admin_log.id == 1
+            @is_exist = true
+        else
+         @is_exist = false
+       end
+      p @is_exist
+    end
     def question
        if params[:id] != nil
          @@ary.insert(0 ,params[:id])
@@ -35,19 +44,32 @@ class QuizController < ApplicationController
        @questions
        
       # find question no
-        if @ids != nil
+          @temp_qno = Quest.find_by(params[:qno])
           @temp_id = Quest.find_by(assesments_id: @ids)
-            if @temp_id != nil
-               @@qno_param.insert(0 ,@temp_id.id ) 
-            end
+
+        if @ids != nil
+            if @temp_qno.present?
+               @@qno_param.insert(0, params[:qno]) 
+               p "hi"                
+            elsif @temp_id != nil
+                  @@qno_param.insert(0 ,@temp_id.id )
+               p "bye" 
+               end
          elsif params[:qno] != nil
-               @@qno_param.insert(0, params[:qno])      
+            if @temp_qno.nil?
+               @@qno_param.insert(0, params[:qno]) 
+               p "hello"
+            else
+               @@qno_param.insert(0 ,@temp_id.id )
+               p "hi1"  
+            end 
        end
        @q_id = @@qno_param[0]
       #  p "++++++++"
        p  params[:qno] != nil
        p @q_id
-
+      p "=================is admin "
+      p is_admin
     end
       def create_quiz
       @assesment = Assesment.new(params.require(:assesment).permit(:title, :user_id ))
@@ -55,6 +77,12 @@ class QuizController < ApplicationController
             if @assesment.save
                render "quiz_index"
             end
+      end
+      def delete_quiz
+      @delete_quiz = Assesment.find_by(id: params[:delquiz_id])
+      if @delete_quiz.destroy
+         redirect_to "/quiz/home"
+      end
       end
 
        def delete_quest

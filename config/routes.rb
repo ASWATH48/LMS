@@ -39,9 +39,11 @@ Rails.application.routes.draw do
   match '/quiz/create', to: 'quiz#create', via: :post
   match '/quiz/createquiz', to: 'quiz#create_quiz', via: :post
   get "/quiz/question", to: 'quiz#question'
+  get "/quiz/delete_quiz/:delquiz_id" , to: 'quiz#delete_quiz'
   get "/quiz/qno/:qno" , to: 'quiz#question' 
   get "/quiz/qno/delete/:del_id" , to: 'quiz#delete_quest' 
 
+  match '/answer/home/:id' , to: 'answer#index' , via: :get
 
 
 

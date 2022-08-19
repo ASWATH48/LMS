@@ -1,10 +1,34 @@
+<div class="container">
+  <div class="d-flex justify-content-end">
+    <a href="" class="btn btn-pri mt-4">Add quest</a>
+
+  </div>
+</div>
 <div class="container mt-5">
     <div class="row">
         <% Assesment.all.map do |quiz|%>
-        <div class="col-2 rounded bg-white py-3  px-4">
-          <p class="fs-4 mb-4 "><%= quiz.title%></p>
-          <a href="/quiz/question/<%= quiz.id %>" class="btn btn-pri float-end ">Start</a>
+        <div class="col-md-3 col-sm-12 mb-2">
+         <div class="row rounded bg-white border px-3 py-3 mx-2">
+          <div class="col-12">
+            <div class="row">
+            <div class="col-8">
+            <p class="fs-4 mb-4"><%= quiz.title%></p>
+            </div>
+            <div class="col">
+              <em class="fa fa-ellipsis-v  nav-link dropdown-toggle text-dark"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-hidden="true"></em> 
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li ><a class="dropdown-item" href="/quiz/question/<%= quiz.id %>">Add question</a></li>
+                  <li><a class="dropdown-item" href="/quiz/delete_quiz/<%= quiz.id %>">Delete Quiz</a></li>
+                </ul> 
+            </div>
+          </div>
+          </div>
+          <div class="col-12">
+            <a href="/answer/home/<%= quiz.id %>" class="btn btn-pri float-end ">Start</a>
+          </div>
+         </div>
         </div>
         <% end %>
     </div>
 </div>
+
