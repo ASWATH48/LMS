@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get "/quiz/qno/delete/:del_id" , to: 'quiz#delete_quest' 
 
   match '/answer/home/:id' , to: 'answer#index' , via: :get
+  match '/answer/store' , to: 'answer#create' , via: :post
 
 
 

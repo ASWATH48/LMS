@@ -1,39 +1,56 @@
-<div class="container">
-    <% @id.map do |ans| %>
-    <form>
-    <div class="row mt-4 bg-white rounded p-3">
-     <div id="<%=ans.id%>" >
-                <div class="row bg-white">
-                        <div class="col-12 ">
-                            <p class="fs-5 fw-bold"><%= ans.question.capitalize %> ?</p>
-                        </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6  col-12  mb-2 px-1 ">
-                        <input type="submit" value="<%= ans.answer %>" class="index-bg text-white pt-1 ps-2 rounded pb-4">
-                    </div>           
-                    <div class="col-md-6 col-12 mb-2 px-1 ">
-                        <input type="submit" value="<%= ans.choice1 %>" class="index-bg text-white pt-1 ps-2 rounded pb-4">
-                    </div>
-                </div>
-                <div class="row mt-1">
-                    <% unless  ans.choice2.length == 0 && ans.choice3.length == 0 %>
-                    <div class="col-md-6 col-12  mb-2 px-1">
-                        <input type="submit" value="<%= ans.choice2 %>" class="index-bg text-white pt-1 ps-2 rounded pb-4">
-                    </div>
-                    <div class="col-md-6 col-12  mb-2 px-1">
-                        <input type="submit" value="<%= ans.choice3 %>" class="index-bg text-white pt-1 ps-2 rounded pb-4">
-                    </div>
-                <% end %>
-                </div>
+<div class="container" id="que">
+    <% @quest.each do |ans| %>
+    <%if !Answer.find_by_quests_id(ans.id).present?%>
+    
+        <div class="question row" id="question<%= ans.id %>">
+            <div class="col-12">
+                <%= ans.question %>
+            </div>
+            <%@ary=[]%>
+                <%if ans.answer.present?%>
+                    <%@ary.push(ans.answer)%>
+                        <%end%>
+                            <%if ans.choice1.present?%>
+                                <%@ary.push(ans.choice1)%>
+                                    <%end%>
+                                        <%if ans.choice2.present?%>
+                                            <%@ary.push(ans.choice2)%>
+                                                <%end%>
+                                                    <%if ans.choice3.present?%>
+                                                        <%@ary.push(ans.choice3)%>
+                                                            <%end%>
+                                                                <form action="/answer/store" class="row" method="post" onsubmit="sublit(<%= ans.id %>)">
+                                                                    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+        <input type="hidden" name="users_id" value="<%=session[:current_user]%>">
+        <input type="hidden" name="quests_id" value="<%=ans.id%>">
+        <input type="hidden" name="assesments_id" value="<%=ans.assesments_id%>">
+                                                                <%@ary.shuffle.each do |ar|%>
+                                                                    <div class="col-md-6">
+                                                                        <input type="submit" name="answer" value="<%=ar%>">
+                                                                    </div>
+                                                                    <%end%>
+                                                                </form>
         </div>
-        </div>
-       </form>
+        <%end%>
+        <%end%>
 </div>
+
 <script>
-let div = document.getElementById("<%=ans.id%>")
-if(div > "<%=ans.id%>") {
-    div.style.display="none";
-}
+    function sublit(a){
+        document.getElementById(`question${a}`).style.display = "none";
+    }
+
+
+    function queshow(){
+    let len = document.getElementById("que").getElementsByClassName("question").length
+        for(let i=1; i<len; i++){
+document.getElementById("que").getElementsByClassName("question")[i].style.display = "none"
+        }
+        if(len == 0){
+            window.location.href = "/"
+        }
+    }
+
+    queshow();
 </script>
- <% end %>
