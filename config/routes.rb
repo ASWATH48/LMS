@@ -45,9 +45,7 @@ Rails.application.routes.draw do
 
   match '/answer/home/:id' , to: 'answer#index' , via: :get
   match '/answer/store' , to: 'answer#create' , via: :post
-
-
-
+  match '/quiz/results/:res_id' , to: 'answer#results' ,via: :get
 
   get 'main/index'
   resources :news

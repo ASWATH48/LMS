@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_19_124249) do
+ActiveRecord::Schema.define(version: 2022_08_21_151853) do
 
   create_table "answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "answer"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2022_08_19_124249) do
     t.bigint "assesments_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "result"
     t.index ["assesments_id"], name: "index_answers_on_assesments_id"
     t.index ["quests_id"], name: "index_answers_on_quests_id"
     t.index ["users_id"], name: "index_answers_on_users_id"

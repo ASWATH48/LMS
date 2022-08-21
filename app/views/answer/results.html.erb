@@ -1,0 +1,37 @@
+<% @answer = Answer.find_by(assesments_id: params[:res_id] , users_id: session[:current_user]) %>
+<% @no_of_qns = Quest.where(assesments_id: @answer.assesments_id).length %>
+<% @quiz_name = Assesment.find_by(id: @answer.id)%>
+<% @crt_ans = Answer.where(id: @answer.id , result: 1).length %>
+
+<div class="container">
+    <div class="row d-flex  justify-content-center p-5" >
+        <div class="col-lg-5 col-sm-12 bg-white border rounded" style="height: 50vh;">
+              <div class="row my-4 ms-1">
+                <div class="col-12">
+                    <p class="fs-1"><%= @quiz_name.title.upcase%> QUIZ</p>
+                </div>
+                <hr class="text-muted ">
+                <div class="col-lg-11 col-12  d-flex justify-content-center">
+                    <p class="fs-3">YOUR RESULTS:- <%= @crt_ans%>/<%= @no_of_qns %></p>
+                </div>
+                <div class="col-lg-11 col-12 d-flex justify-content-center">
+                <% if @crt_ans < @no_of_qns %>
+                    <p class="fs-5 text-warning">You Must Study Harder !!</p>
+                <% elsif  @crt_ans == @no_of_qns %>
+                   <p class="fs-5 text-success">Great Work Keep Rocking  !!</p>
+                <% end%>
+                </div>
+                <div class="col-12 ">
+                    <div class="row w-100 ps-4">
+                    <div class="col-sm-12 col-lg-5 ms-4 mb-2">
+                        <a href="/course" class="btn btn-pri">Explore Courses</a>       
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <a href="/quiz/home" class="btn btn-outline-pri">Back To Quiz</a>       
+                    </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

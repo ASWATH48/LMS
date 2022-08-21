@@ -13,7 +13,7 @@
           <a class="nav-link" href="/course">Course</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/quiz">Quiz</a>
+          <a class="nav-link" href="/quiz/home">Quiz</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/allblogs">Blogs</a>
@@ -35,9 +35,16 @@
               </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <% logged_user = User.find(session[:current_user]) %>
-            <p class="dropdown-item ">Signed in as</p>
-            <p class="dropdown-item lead px-3"><i class="fa fa-user mx-2" aria-hidden="true"></i><%= logged_user["username"].capitalize()%></p>
-            <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out mx-2" aria-hidden="true"></i>Log out</a>
+            <div class="dropdown-item ">
+              <p class="fs-4">  Signed in as </p>
+            </div>
+            <div class="dropdown-item ">
+             <p class="fs-5">              <i class="fa fa-user mx-2" aria-hidden="true"></i><%= logged_user["username"].capitalize()%>
+             </p>
+            </div>
+            <a class="dropdown-item fs-5" href="/logout">
+              <i class="fa fa-sign-out mx-2" aria-hidden="true"></i>Log out
+            </a>
           </ul>
         </li>
         <% end %>
