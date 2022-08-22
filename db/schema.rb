@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_17_053438) do
+ActiveRecord::Schema.define(version: 2022_08_21_151853) do
+
+  create_table "answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "answer"
+    t.bigint "users_id"
+    t.bigint "quests_id"
+    t.bigint "assesments_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "result"
+    t.index ["assesments_id"], name: "index_answers_on_assesments_id"
+    t.index ["quests_id"], name: "index_answers_on_quests_id"
+    t.index ["users_id"], name: "index_answers_on_users_id"
+  end
 
   create_table "assesments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
@@ -71,6 +84,9 @@ ActiveRecord::Schema.define(version: 2022_08_17_053438) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "answers", "assesments", column: "assesments_id"
+  add_foreign_key "answers", "quests", column: "quests_id"
+  add_foreign_key "answers", "users", column: "users_id"
   add_foreign_key "assesments", "users"
   add_foreign_key "blogs", "users"
   add_foreign_key "likes", "blogs"
