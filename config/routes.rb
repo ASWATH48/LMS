@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root 'users#new'
   get 'news/technews'
   get 'users/new'
   get 'login/login'
-  root 'main#index'
 
   get '/signup' => 'users#new'
   match '/index', to: 'main#index', via: :get
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   match '/delete_liked_blog/:id' , to: 'news#delete' , via: :get
   match '/blogs', to: 'news#edit', via: :post
 
-  
+
   match '/quiz', to: 'quiz#quiz', via: :get
   match '/quiz/home', to: 'quiz#quiz_index', via: :get
   match '/quiz/question/:id', to: 'quiz#question', via: :get
@@ -40,8 +40,8 @@ Rails.application.routes.draw do
   match '/quiz/createquiz', to: 'quiz#create_quiz', via: :post
   get "/quiz/question", to: 'quiz#question'
   get "/quiz/delete_quiz/:delquiz_id" , to: 'quiz#delete_quiz'
-  get "/quiz/qno/:qno" , to: 'quiz#question' 
-  get "/quiz/qno/delete/:del_id" , to: 'quiz#delete_quest' 
+  get "/quiz/qno/:qno" , to: 'quiz#question'
+  get "/quiz/qno/delete/:del_id" , to: 'quiz#delete_quest'
 
   match '/answer/home/:id' , to: 'answer#index' , via: :get
   match '/answer/store' , to: 'answer#create' , via: :post
