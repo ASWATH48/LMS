@@ -1,11 +1,16 @@
-<% logged_user = User.find(session[:current_user]) %>
   <div class="container mt-5">
     <div class="row">
       <div class="col col-md-3 me-2 col-12 border  py-5 bg-white rounded ">
-        <div class="row d-flex justify-content-center">
-          <%= image_tag "profile_clipart.png", class: "img-fluid w-75"%>
-          <p class="text-center fs-1 mt-2"><%= logged_user["username"].capitalize()%>  </p>
-        </div>
+        <div class="row d-flex justify-content-center px-5">
+    <% if !session[:current_user].nil? %>
+                <% logged_user = User.find(session[:current_user]) %>
+                <%= image_tag "profile_clipart.png", class: "img-fluid w-75"%>
+                <p class="text-center fs-1 mt-2"><%= logged_user["username"].capitalize()%>  </p>
+          <% else %>
+                 <i class="fa fa-user mx-2 text-center" aria-hidden="true"  style="font-size: 10rem;"></i>
+                 <a href="/signin" class="btn btn-pri"> Sign in</a>
+          <% end %>
+                  </div>
         <hr class="text-black" style="padding-top: 2px;">
         <div class="row text-center px-5">
             <a href="/allblogs" class="text-reset text-decoration-none btn btn-outline-pri my-2">All Blogs</a>
@@ -24,7 +29,7 @@
             <div class="card-body p-4 p-md-5">
               <h1 class="mb-4 pb-2 pb-md-0 mb-md-5 font-color-grey">Add Blog</h1>
               <form action="/blog/create" method="post">
-                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"> 
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
                 <input name="blog[user_id]" type="hidden" value= "<%= session[:current_user] %>" >
                 <div class="row">
                   <div class="col-md-12 mb-4">
@@ -37,7 +42,7 @@
               <div class="float-end">
                <input class="btn btn-primary btn-lg" type="submit" value="Submit"/>
              </div>
-    
+
             </div>
               </form>
             </div>

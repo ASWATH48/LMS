@@ -27,9 +27,12 @@ body{
 .pri-col{
    background-color: #754ffe;
 }
+.text-pri{
+   color: #754ffe;
+}
 
 .orange{
-  background: #f48f3b; 
+  background: #f48f3b;
 }
 .blue{
    background: #489acc;
@@ -42,7 +45,7 @@ body{
    background-color: #fff;
     box-shadow: 0 0 10px 1px #B1A8A8;
     padding: 10px 0;
-    
+
  }
 
  .height-200{
@@ -56,7 +59,7 @@ body{
 .text-cutting{
    display: -webkit-box;
    -webkit-line-clamp: 3;
-   -webkit-box-orient: vertical;  
+   -webkit-box-orient: vertical;
    overflow: hidden;
 }
 .btn-pri{
