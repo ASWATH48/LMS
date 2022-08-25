@@ -31,7 +31,7 @@
         <%else%>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-user fa-2x" aria-hidden="true"></i>      
+            <i class="fa fa-user fa-2x" aria-hidden="true"></i>
               </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <% logged_user = User.find(session[:current_user]) %>
@@ -39,7 +39,7 @@
               <p class="fs-4">  Signed in as </p>
             </div>
             <div class="dropdown-item ">
-             <p class="fs-5">              <i class="fa fa-user mx-2" aria-hidden="true"></i><%= logged_user["username"].capitalize()%>
+             <p class="fs-5"><i class="fa fa-user mx-2" aria-hidden="true"></i><%= logged_user["username"].capitalize()%>
              </p>
             </div>
             <a class="dropdown-item fs-5" href="/logout">

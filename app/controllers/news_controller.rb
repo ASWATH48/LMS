@@ -12,7 +12,7 @@ class NewsController < ApplicationController
   def likedblogs
     @liked_blog = Like.where(user_id: session[:current_user])
     @like
-    
+
   end
 
   def addpost
@@ -20,7 +20,7 @@ class NewsController < ApplicationController
        redirect_to "/signin"
     else
     @blog = Blog.new(params.require(:blog).permit(:user_id, :blog_title, :blog_description))
-    redirect_to root_path if @blog.save
+    redirect_to "/allblogs" if @blog.save
     end
   end
 
@@ -61,14 +61,14 @@ class NewsController < ApplicationController
     if check_id
     check_id.destroy
     end
-    redirect_back(fallback_location: root_path)    
+    redirect_back(fallback_location: root_path)
   end
 
   def get_user_id
     session[:current_user]
   end
-  
-  
+
+
 
   #  p "_____________"
   #  p session[:current_user]

@@ -1,23 +1,29 @@
-<% logged_user = User.find(session[:current_user]) %>
 <div class="container mt-5">
     <div class="row">
       <!--  -->
       <div class="col col-md-3 me-2 col-12 border  py-5 bg-white rounded ">
-          <div class="row d-flex justify-content-center">
-            <%= image_tag "profile_clipart.png", class: "img-fluid w-75"%>
-            <p class="text-center fs-1 mt-2"><%= logged_user["username"].capitalize()%>  </p>
-          </div>
+          <div class="row  d-flex justify-content-center px-5">
+          <% if !session[:current_user].nil? %>
+                      <% logged_user = User.find(session[:current_user]) %>
+                      <%= image_tag "profile_clipart.png", class: "img-fluid w-75"%>
+                      <p class="text-center fs-1 mt-2"><%= logged_user["username"].capitalize()%>  </p>
+                <% else %>
+                      <i class="fa fa-user mx-2 text-center" aria-hidden="true"  style="font-size: 10rem;"></i>
+                      <a href="/signin" class="btn btn-pri"> Sign in</a>
+          <% end %>
+                </div>
           <hr class="text-black" style="padding-top: 2px;">
           <div class="row text-center px-5">
               <a href="/allblogs" class="text-reset text-decoration-none btn btn-outline-pri my-2">All Blogs</a>
                <a href="/blog/myblogs" class="text-reset text-decoration-none btn btn-outline-pri my-2">My Blogs</a>
-               <a href="/blog/addblogs" class="text-reset text-decoration-none btn btn-outline-pri my-2">Add Blog</a>
+               <a href="/blog/addblog" class="text-reset text-decoration-none btn btn-outline-pri my-2">Add Blog</a>
                <a href="/blog/likedblogs" class="text-reset text-decoration-none btn btn-pri my-2">Liked Blogs</a>
           </div>
+
       </div>
       <!-- blog section -->
       <div class="col-md bg-white">
-          <h1 class="my-4 ms-3">Liked Blogs</h1>     
+          <h1 class="my-4 ms-3">Liked Blogs</h1>
            <% if @liked_blog.present? %>
            <% @liked_blog.all.map do |cur_post| %>
             <div class="row bg-white pt-3 mt-5 mb-2 shadow">
@@ -26,14 +32,14 @@
 
                   </div>
                   <div class="col-12">
-                    <p class="fs-3"><%= Blog.find(cur_post.blog_id).blog_title.capitalize %></p> 
+                    <p class="fs-3"><%= Blog.find(cur_post.blog_id).blog_title.capitalize %></p>
                   </div>
                   <div class="col-12 mb-2">
                     <h4 class="lead"><%= Blog.find(cur_post.blog_id).blog_description.capitalize %></h4>
                   </div>
                   <div class="col-9 mb-1">
                     <% like_exist = Like.find_by(user_id: session[:current_user], blog_id: cur_post['blog_id']).nil? %>
-                    <% cur_blog_likes = Like.where(blog_id: cur_post['blog_id']).length %>   
+                    <% cur_blog_likes = Like.where(blog_id: cur_post['blog_id']).length %>
                     <% unless like_exist %>
                     <a href="/delete_liked_blog/<%= cur_post['blog_id'] %>" class="text-reset text-decoration-none" ><i class="fa fa-heart fa-lg text-danger me-2"></i>&nbsp;<%= cur_blog_likes %> </a>
                     <% else %>
@@ -43,7 +49,7 @@
 
             </div>
             <% end %>
-          <% end %>  
+          <% end %>
       </div>
       </div>
     </div>

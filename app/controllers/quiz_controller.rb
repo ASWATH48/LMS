@@ -11,27 +11,13 @@ class QuizController < ApplicationController
 
 
   def quiz_index
-
-  end
-
-
-  def is_admin
-
+    if !session[:current_user].nil?
     @admin_log = User.find(session[:current_user])
-
-    if @admin_log.id == 1
-
-      @is_exist = true
-
-    else
-
-      @is_exist = false
-
+    @logged_user = User.find(session[:current_user])
     end
 
-    p @is_exist
-
   end
+
 
 
   def question
@@ -114,6 +100,7 @@ class QuizController < ApplicationController
 
 
   def create_quiz
+    @admin_log = User.find(session[:current_user])
 
     @assesment = Assesment.new(params.require(:assesment).permit(:title, :user_id))
     @assesment[:status] = false

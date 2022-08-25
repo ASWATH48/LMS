@@ -1,7 +1,8 @@
 <% @answer = Answer.find_by(assesments_id: params[:res_id] , users_id: session[:current_user]) %>
 <% @no_of_qns = Quest.where(assesments_id: @answer.assesments_id).length %>
-<% @quiz_name = Assesment.find_by(id: @answer.id)%>
-<% @crt_ans = Answer.where(id: @answer.id , result: 1).length %>
+<% @quiz_name = Assesment.find_by(id: @answer.assesments_id)%>
+<% @crt_ans = Answer.where(assesments_id: @answer.assesments_id , result: true).length %>
+
 
 <div class="container">
     <div class="row d-flex  justify-content-center" >
@@ -28,8 +29,8 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                    <a href="/course" class="btn btn-pri ">Explore Courses</a>   
-                                    <a href="/quiz/home" class="btn btn-outline-pri">Back To Quiz</a>   
+                                    <a href="/course" class="btn btn-pri ">Explore Courses</a>
+                                    <a href="/quiz/home" class="btn btn-outline-pri">Back To Quiz</a>
                             </div>
                         </div>
                 </div>
@@ -37,8 +38,3 @@
         </div>
     </div>
 </div>
-
-
-    
-    
-
